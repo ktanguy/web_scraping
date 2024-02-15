@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smartphone Price Visualization</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <canvas id="smartphoneChart" width="800" height="400"></canvas>
+
+    <script>
+        // Sample JSON data
+        const jsonData = [
+            {"name":"Super Mini Mobile Cell Phone Double SIM bluetooth & MP3","price":"15,000 RF"},{"name":"Iphone 7 Plus (From 32GB,128GB & 256GB) Best deal","price":"From 200,000 RF"},{"name":"Iphone 6s, 16GB in great condition","price":"130,000 RF"},{"name":"Iphone X (64gb/256GB)","price":"350,000 RF"},{"name":"Apple iPhone 7 (128GB)","price":"230,000 RF"},{"name":"Samsung galaxy A5 (2017) 32GB","price":"120,000 RF"},{"name":"Iphone 11 Pro (65GB) in pristine condition","price":"550,000 RF"},{"name":"Apple iPhone 12 Pro Max 128/256GB","price":"850,000 RF"},{"name":"SAMSUNG GALAXY A12 (DUAL SIM) Refurbishes","price":"160,000 RF"},{"name":"Samsung Galaxy A50 4Gb Ram 64Gb Rom","price":"200,000 RF"},{"name":"Samsung galaxy S9+ 64GB","price":"200,000 RF"},{"name":"iPhone Xs Max 256GB Iphone (Great Condition)","price":"250,000 RF"},{"name":"Galaxy A5 (2017)","price":"250,000 RF"},{"name":"Samsung Galaxy A6 (2018) DUAL SIM (Refurbished)","price":"550,000 RF"},{"name":"HUAWEI NOVA 7I 8GB RAM – 128GB (Refurbished)","price":"100,000 RF"},{"name":"Samsung Galaxy Note 9 N960 (128GB)","price":"145,000 RF"},{"name":"iphone 14 Pro Max Used/New","price":"From 135,000 RF"},{"name":"Samsung Galaxy Z Fold 4 256GB","price":"250,000 RF"},{"name":"Samsung Galaxy Z Flip 4. 128gb","price":"300,000 RF"},{"name":"Applle iPhon 11 (64GB) -(Product) RED","price":"350,000 RF"},{"name":"Sony Xperia XZ1 Dual Sim 64GB LTE 4G Blue 4GB RAM","price":"From 1,250,000 RF"},{"name":"Galaxy J6 Dual Sim 4GLTE","price":"1,500,000 RF"},{"name":"Samsung Galaxy A10S BLUE, BLACK, RED","price":"800,000 RF"},{"name":"Samsung Galaxy C5 Pro DUAL SIM (Used In great condition)","price":"550,000 RF"},{"name":"Samsung Galaxy A7 (2018) Refurbished","price":"650,000 RF"},{"name":"Samsung Galaxy A51 5G (DUAL SIM) Refurbished","price":"180,000 RF"},{"name":"Samsung Galaxy A30","price":"140,000 RF"},{"name":"Samsung Galaxy A32 4G","price":"170,000 RF"},{"name":"Samsung S7 Edge DUAL SIM (Used in great condition)","price":"130,000 RF"},{"name":"Xiaomi Redmi 9 (Used & Great condition)","price":"150,000 RF"},{"name":"Samsung Galaxy S20 Dual SIM- 6GB RAM","price":"170,000 RF"},{"name":"Samsung Galaxy j7 pro -64gb (DUAL SIM)","price":"200,000 RF"},{"name":"Samsung Galaxy A7 (2017","price":"250,000 RF"},{"name":"Samsung Galaxy A72 Dual Sim","price":"300,000 RF"},{"name":"Huawei Y9 Prime 2019 phone 4G RAM 128GB ROM","price":"150,000 RF"},{"name":"Oppo A9 2020 (4G, 8GB RAM, (128GB)Refub","price":"250,000 RF"},{"name":"Lenovo Z5s 4GB/6GB RAM 64GB 6.3-Inch Mobile Phone (Dual SIM)","price":"160,000 RF"},{"name":"iPhone 8 Plus (64GB)","price":"150,000 RF"},{"name":"Iphone Xs (64GB / 256GB). NEW refub","price":"170,000 RF"},{"name":"Samsung Galaxy S9+ 6GB RAM/ 256GB ROM(Refub / New)","price":"550,000 RF"},{"name":"Samsung Galaxy S8 64GB ( Refub / New )","price":"150,000 RF"},{"name":"Iphone 6s Plus 128GB ( Refurbished like New)","price":"160,000 RF"},{"name":"Ipad Air 2 Silver and Gold colors (128GB )","price":"195,000 RF"},{"name":"Iphone Xr 32/54/128GB (in great condition)","price":"390,000 RF"},{"name":"iPhone 15 Pro 256Gb","price":"1,930,000 Rwf"},{"name":"Apple iPhone 15 Pro Max, 256GB","price":"2,150,000 Rwf"},{"name":"Apple iPhone 14 Pro Max (128 GB)","price":"1,600,000 Rwf"},{"name":"Apple iPhone 14 Pro (256 GB)","price":"1,550,000 Rwf"},{"name":"Apple iPhone 14 Plus (128 GB)","price":"1,300,000 Rwf"},{"name":"Apple iPhone 14 (128 GB)","price":"1,200,000 Rwf"},{"name":"iPhone XR","price":"450,000 Rwf"},{"name":"SAMSUNG Galaxy Note 20 Ultra","price":"950,000 Rwf"},{"name":"SAMSUNG Galaxy Note 20","price":"700,000 Rwf"},{"name":"SAMSUNG Galaxy Note 10+","price":"470,000 Rwf"},{"name":"SAMSUNG Galaxy Note 10","price":"400,000 Rwf"},{"name":"SAMSUNG Galaxy Note 9","price":"350,000 Rwf"},{"name":"SAMSUNG Galaxy Note 8","price":"280,000 Rwf"},{"name":"SAMSUNG Galaxy S20+ 5G","price":"700,000 Rwf"},{"name":"SAMSUNG Galaxy S20","price":"600,000 Rwf"},{"name":"SAMSUNG Galaxy S20 FE","price":"500,000 Rwf"},{"name":"Iphone xs 64gb","price":"Price: FRw260,000"},{"name":"Iphone xr 64gb white","price":"Price: FRw270,000"},{"name":"Iphone 14pro 128gb","price":"Price: FRw1,200,000"},{"name":"TECNO CAMON18i 128GB 4RAM IRAGURISHWA Battery mAh 5000mAh TSAP","price":"Price: FRw85"},{"name":"Iphone 15 pro max","price":"Price: FRw1,750,000"},{"name":"Phone smart 7 HD","price":"Price: FRw95,000"},{"name":"Iphone 8 64gb black","price":"Price: FRw160,000"},{"name":"Tecno spark 10 128Gb","price":"Price: FRw150,000"},{"name":"Infinix 4","price":"Price: $45"},{"name":"Iphone 8","price":"Price: FRw170"},{"name":"Infinix smart6","price":"Price: FRw66"},{"name":"Tecno spark7","price":"Price: FRw680"},{"name":"Phone tekno povoir 3","price":"Price: FRw70"},{"name":"Iphone 14 promax","price":"Price: $1,500"},{"name":"Phone","price":"Price: FRw130,000"},{"name":"iPhone 13 Pro","price":"Price: FRw1,080,000"},{"name":"Redmi Note 10 pro","price":"Price: FRw250,000"},{"name":"iPhone 11","price":"Price: FRw330"},{"name":"iPhone X","price":"Price: FRw215,000"},{"name":"iPhone 11","price":"Price: FRw350,000"},{"name":"iphone xs 256gb all ok only 150 everthing working perfect","price":"Price: د.إ150"},{"name":"Tecno spark 10c","price":"Price: $90"},{"name":"Infinix Hot 30i","price":"Price: FRw120"},{"name":"Kano ga phone ni keza kajyamo SIM 2 na Memory","price":"Price: FRw8,000"},{"name":"Selling great Huawei Smartphone","price":"Price: FRw160"},{"name":"iphone 12 mini 128GB","price":"Price: FRw400,000"},{"name":"Telephone","price":"Price: $75"},{"name":"iPhone 7plus","price":"Price: $160,000"},{"name":"iPhone 12 pro max Water proof Storage 256 gbs Look","price":"Price: FRw715,000"},{"name":"Gimbal za telephone zidahenze kd zigezweho","price":"Price: FRw150,000"},{"name":"Infinix","price":"Price: FRw85"},{"name":"Tlphone zigezweho","price":"Price: FBu400,000"},{"name":"AKA NOKIA KA MACYE","price":"Price: $23"},{"name":"i phone xs max","price":"Price: FRw300"},{"name":"Infinix NOTE12i","price":"Price: FRw120"},{"name":"iPhone X 256GB","price":"Price: FRw185,000"},{"name":"Telephone spark 5","price":"Price: FRw55"},{"name":"i phone Xs max storage 256 GB american version face","price":"Price: FRw300"},{"name":"Pixel Iphone","price":"Price: FREE"},{"name":"iPhone 13 Pro 256GB","price":"Price: $970"},{"name":"Samsung s9 and iPhone X","price":"Price: FREE"},{"name":"Iphone 11pro","price":"Price: FRw530"},{"name":"Telephone Mobicel","price":"Price: $25 Now $18"},{"name":"AFFORDABLE IPHONES for Sale. Prices are on the post","price":"Price: R2,000"},{"name":"Tecno spark C","price":"Price: FREE"}
+        ];
+
+        // Extracting smartphone names and prices from JSON data
+        const smartphoneNames = jsonData.map(item => item.name);
+        const smartphonePrices = jsonData.map(item => parseFloat(item.price.replace(/[^\d.]/g, '')));
+
+        // Generate random colors for each smartphone
+        const colors = smartphoneNames.map(() => {
+            const r = Math.floor(Math.random() * 256);
+            const g = Math.floor(Math.random() * 256);
+            const b = Math.floor(Math.random() * 256);
+            return `rgba(${r}, ${g}, ${b}, 0.5)`; // Random color with opacity
+        });
+
+        // Create chart
+        const ctx = document.getElementById('smartphoneChart').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: smartphoneNames,
+                datasets: [{
+                    label: 'Price (in RF)',
+                    data: smartphonePrices,
+                    pointBackgroundColor: colors,
+                    pointBorderColor: colors,
+                    pointRadius: 5,
+                    pointHoverRadius: 7,
+                    borderWidth: 2,
+                    borderColor: 'rgba(0, 0, 0, 0.5)',
+                    backgroundColor: 'rgba(0, 0, 0, 0.1)'
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        ticks: {
+                            callback: function (value, index, values) {
+                                return value.toLocaleString(); // Format price with commas
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.dataset.label + ': ' + context.parsed.y.toLocaleString();
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

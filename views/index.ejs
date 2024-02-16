@@ -1,0 +1,108 @@
+<!-- visualize_data.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smartphone Price Visualization</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      * {
+        font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+          "Lucida Sans", Arial, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="smartphoneChart" width="700" height="350"></canvas>
+    <script>
+      $(document).ready(function () {
+        $.getJSON("http://localhost:3000/scraped_data.json", function (data) {
+          const jsonData = JSON.parse(data);
+          visualizeData(jsonData);
+        });
+      });
+
+      function visualizeData(jsonData) {
+        const smartphoneNames = jsonData.map((item) => item.name);
+        const retailerNames = jsonData.map((item) => item.retailer);
+        const time = jsonData.map((item) => item.time);
+        const smartphonePrices = jsonData.map((item) =>
+          parseFloat(item.price.replace(/[^\d.]/g, ""))
+        );
+
+        const colors = smartphoneNames.map(() => {
+          const r = Math.floor(Math.random() * 256);
+          const g = Math.floor(Math.random() * 256);
+          const b = Math.floor(Math.random() * 256);
+          return `rgba(${r}, ${g}, ${b}, 0.5)`;
+        });
+
+        const ctx = $("#smartphoneChart")[0].getContext("2d");
+        const chart = new Chart(ctx, {
+          type: "line",
+          data: {
+            labels: smartphoneNames,
+            datasets: [
+              {
+                label: "Price (in RF)",
+                data: smartphonePrices,
+                pointBackgroundColor: colors,
+                pointBorderColor: colors,
+                pointRadius: 5,
+                pointHoverRadius: 7,
+                borderWidth: 2,
+                borderColor: "rgba(0, 0, 0, 0.5)",
+                backgroundColor: "rgba(0, 0, 0, 0.1)",
+              },
+            ],
+          },
+          options: {
+            scales: {
+              x: {
+                ticks: {
+                  font: {
+                    family: "Verdana, sans-serif", // Replace with your desired font family
+                  },
+                },
+              },
+              y: {
+                ticks: {
+                  font: {
+                    family: "Verdana, sans-serif", // Replace with your desired font family
+                  },
+
+                  callback: function (value, index, values) {
+                    return value.toLocaleString();
+                  },
+                },
+              },
+            },
+            plugins: {
+              tooltip: {
+                bodyFontFamily: "Verdana",
+                bodyFontSize: 14,
+                callbacks: {
+                  label: function (context) {
+                    const retailer = retailerNames[context.dataIndex];
+                    const date = time[context.dataIndex];
+                    const smartphoneName = smartphoneNames[context.dataIndex];
+
+                    return [
+                      context.dataset.label +
+                        " : " +
+                        context.parsed.y.toLocaleString(),
+                      "Date: " + date,
+                      "Retailer: " + retailer,
+                    ];
+                  },
+                },
+              },
+            },
+          },
+        });
+      }
+    </script>
+  </body>
+</html>

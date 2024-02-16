@@ -1,3 +1,4 @@
+
 # Web Scraping and Data Visualization
 
 ## Overview
@@ -17,22 +18,33 @@ The system comprises a Node.js application that leverages Selenium WebDriver for
 
 1. **Clone the repository**
 
-   ```bash
+   
+   
+
+   ```bash 
    git clone https://github.com/ktanguy/web_scraping/
    cd web_scraping
+   ```
 
 2. **Install dependencies**
 
-```npm install```
+	```bash
+	npm install
+	```
 
 3. **Run the scraping script and start the server**
 
-```node script.js```
+	```bash
+	node script.js
+	```
 
 4. **Open in Browser**
 
-Open your web browser and navigate to the link below to view the visualization.
-```http://localhost:3000/```
+	Open your web browser and navigate to the link below to view the visualization.
+
+	```bash
+	http://localhost:3000/
+	```
 
 # Project Structure
 
@@ -49,3 +61,4 @@ The visualization displays a line chart showcasing the pricing trends of smartph
 - The project utilizes Chart.js for creating interactive charts.
 - Selenium WebDriver is employed for web scraping smartphone pricing data.
 - Express and EJS are used to set up the server and render the HTML template.
+

@@ -23,15 +23,16 @@ The system comprises a Node.js application that leverages Selenium WebDriver for
 
 2. **Install dependencies**
 
-`npm install`
+```npm install```
 
 3. **Run the scraping script and start the server**
 
-`node script.js`
+```node script.js```
 
 4. **Open in Browser**
 
-Open your web browser and navigate to `http://localhost:3000/` to view the visualization.
+Open your web browser and navigate to the link below to view the visualization.
+```http://localhost:3000/```
 
 # Project Structure
 
